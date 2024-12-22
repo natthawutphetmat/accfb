@@ -1,42 +1,68 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.homebox {
+    border: 1px solid #ddd;
+    margin: 15px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px #888888;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    height: auto; /* ให้ความสูงปรับตามเนื้อหา */
+    overflow: hidden; /* ซ่อนเนื้อหาที่เกิน */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.box {
+    display: flex;
+    width: 100%;
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวแกน Y */
+    justify-content: space-between; /* ช่องว่างระหว่าง item */
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+.boximg {
+    width: 100px; /* กำหนดความกว้างของรูปภาพ */
+    flex-shrink: 0; /* ไม่ให้รูปภาพย่อ */
+    margin-right: 15px;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.boximg img {
+    width: 100%; /* รูปภาพปรับขนาดให้เต็มกล่อง */
+    height: auto; /* รักษาสัดส่วนของรูปภาพ */
+    border-radius: 10px; /* เพิ่มมุมโค้งถ้าต้องการ */
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.boxx {
+    flex: 1; /* ตัวหนังสือใช้พื้นที่ว่างที่เหลือ */
+    margin-right: 50px; /* เว้นระยะกับปุ่ม */
+    text-align: left; /* จัดข้อความไว้ทางซ้าย */
+    overflow: hidden; /* ซ่อนข้อความที่เกิน */
+    white-space: nowrap; /* ไม่ให้ข้อความขึ้นบรรทัดใหม่ */
+    text-overflow: ellipsis; /* แสดง ... เมื่อข้อความยาวเกิน */
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.title {
+    font-size: 1.2rem;
+  
+    margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.name {
+    font-size: 1rem;
+    margin: 0;
+    color: #555; /* เพิ่มสีเพื่อความสวยงาม */
+}
+
+.btns {
+    flex-shrink: 0; /* ไม่ให้ปุ่มย่อ */
+}
+
+.btn {
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+.home {
+    color: #ffffff; 
+    font-size: 1.2rem;
+    font-weight: bold;
 }
