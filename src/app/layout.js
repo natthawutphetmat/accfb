@@ -5,7 +5,7 @@ import "./cart.css";
 
 
 import Nav from "./components/Nav";
-
+import { CustomProviders } from "./provider";
 
 
 const geistSans = localFont({
@@ -29,8 +29,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
  
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <CustomProviders>
         <Nav/>
         {children}
+        </CustomProviders>
       </body>
       <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" />
     </html>

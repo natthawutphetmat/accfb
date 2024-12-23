@@ -1,6 +1,13 @@
+"use client";
+
 import React from 'react'
+import { useSession, signOut } from 'next-auth/react';
+
 
 export default function Nav() {
+
+  const { data: session, status } = useSession();
+
   return (
     <>
 
@@ -18,9 +25,39 @@ export default function Nav() {
     </form>
     <div className="cart d-flex">
 
-        <div className="btn btn-danger rounded-5 h4">    10    </div>
 
-    <img src="/img/cart.png" width={40} alt="logo" className='mx-3' />
+
+   
+        <span className="navbar-text">
+
+{session ? (
+  <div className='d-flex'>
+
+ <div className='mx-5'>
+ <div><img src="/img/user.png" width={50} alt="user" />  </div>
+ <div className='text-center' >{session.user.name}</div>
+ </div>
+ <div className='mx-5'>
+  <button onClick={() => signOut()} className='btn btn-outline-danger'>ออก</button>
+  </div>
+  </div>  
+):(
+
+
+  <>
+  
+
+  <a href="/singup" className='btn btn-danger'>ลงทะเบียน</a> 
+  
+  
+  </>
+)
+
+
+}
+
+
+</span>
     </div>
   </div>
 </nav>

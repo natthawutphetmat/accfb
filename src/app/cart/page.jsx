@@ -34,7 +34,7 @@ export default function CartPage() {
 
 
 
-  // คำนวณยอดรวมทุกครั้งที่ cartItems มีการเปลี่ยนแปลง
+ 
 
   useEffect(() => {
     try {
@@ -76,7 +76,7 @@ export default function CartPage() {
 
   return (
 
-    <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
+    <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>  
 
       {cartItems.length === 0 ? (
 
@@ -98,13 +98,13 @@ export default function CartPage() {
 
               >
 
-                <h2>{item.name}</h2>
+                <p>{item.name}</p>
 
-                <p><b>ราคาบัญชีละ: ${item.price}</b></p>
+                <p>ราคาบัญชีละ: ${item.price}</p>
 
-                <p><b>จำนวนที่ต้องการ: {item.quantity}</b></p>
+                <p> จำนวนที่ต้องการ: {item.quantity} </p>
 
-                {/* ปุ่ม "X" อยู่ในส่วนนี้ */}
+            
 
                 <div className="btn" style={{ marginTop: "10px" }}>
 
@@ -114,8 +114,16 @@ export default function CartPage() {
 
               </div>
 
+            
+
             ))}
 
+
+              <div className="text-centr">
+                <h5>{total}</h5>
+
+                <p> รอชำระเงินเพื่อแสดงหน้าต่อไป </p>
+              </div>
           </div>
 
         </div>
@@ -123,7 +131,7 @@ export default function CartPage() {
       )}
 
 
-<div value={qrCode} />
+    <qrCode value={qrCode} />
 
 </div>
 
