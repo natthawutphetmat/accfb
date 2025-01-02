@@ -1,31 +1,31 @@
-"use client"
-
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import './cart.css';
+import { use } from "react";
+import "./cart.css";
 
 export default function ProductPage({ params }) {
+  const productId = parseInt(use(params).id); // Unwrap params with `use`
 
-
-  
-  const productId = parseInt(params.id);  // ดึง id จาก params
-
-
-
-  const [product, setProduct] = useState(null); // เก็บข้อมูลสินค้า
-  const [quantity, setQuantity] = useState(1);  // จัดการจำนวนสินค้า
-  const [loading, setLoading] = useState(true); // สถานะการโหลดข้อมูล
+  const [product, setProduct] = useState(null); // Store product data
+  const [quantity, setQuantity] = useState(1); // Manage product quantity
+  const [loading, setLoading] = useState(true); // Loading state
 
   const router = useRouter();
 
-  // การดึงข้อมูลสินค้า
+  // Fetch product details
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await fetch(`https://apifb.myad-dev.com/get/${productId}`);
-      const data = await response.json();
-      setProduct(data);
-      setLoading(false);
+      try {
+        const response = await fetch(`https://apifb.myad-dev.com/get/${productId}`);
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error("Failed to fetch product:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     if (productId) {
@@ -35,7 +35,7 @@ export default function ProductPage({ params }) {
 
   const handleAddToCart = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const itemIndex = cartItems.findIndex(item => item.id === product.id);
+    const itemIndex = cartItems.findIndex((item) => item.id === product.id);
 
     if (itemIndex !== -1) {
       cartItems[itemIndex].quantity += quantity;
@@ -59,38 +59,28 @@ export default function ProductPage({ params }) {
   }
 
   return (
+    <div className="text-center">
+      <div className="product">
+        <img src="/img/fblogo.png" alt="Facebook Ads Logo" width="100%" />
 
-<>
+        <div className="product-title">{product.title}</div>
+        <div className="product-description">{product.description}</div>
+        <div className="product-price">${product.price}</div>
 
-<div className="text-center">
-<div className="product">
+        <div className="product-quantity">
+          <button onClick={decreaseQuantity} className="quantity-button">
+            -
+          </button>
+          <span className="quantity-display">{quantity}</span>
+          <button onClick={increaseQuantity} className="quantity-button">
+            +
+          </button>
+        </div>
 
-
-      <img src='/img/fblogo.png' alt='facebook ads logo' width='100%'  />
-
-
-
-      <div className="product-title">{product.title}</div>
-
-
-      <div className="product-description">{product.description}</div>
-      <div className="product-price">${product.price}</div>
-      
-      <div className="product-quantity">
-        <button onClick={decreaseQuantity} className="quantity-button">-</button>
-        <span className="quantity-display">{quantity}</span>
-        <button onClick={increaseQuantity} className="quantity-button">+</button>
+        <button onClick={handleAddToCart} className="add-to-cart-btn">
+          Add
+        </button>
       </div>
-
-      <button onClick={handleAddToCart} className="add-to-cart-btn">
-        Add 
-      </button>
     </div>
-
-</div>
-
-</>
-
- 
   );
 }

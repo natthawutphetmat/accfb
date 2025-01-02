@@ -20,7 +20,7 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/register", {
+      const response = await fetch("https://longin.myads.dev//register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -97,7 +97,7 @@ export default function RegisterPage() {
 
      <div className="text-center mt-5" > 
       
-      <a href="/login" className="btn btn-info">-  เข้าสู่ระบบ  -</a>
+      <a href="/login"  >เข้าสู่ระบบ</a>
        </div>
 
     </div>

@@ -16,7 +16,7 @@ const handler = NextAuth({
         }
 
         try {
-          const res = await fetch('http://localhost:5000/login', {
+          const res = await fetch('https://longin.myads.dev/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -61,8 +61,8 @@ const handler = NextAuth({
     },
   },
   pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
+    signIn: '/signin',
+    error: '/error',
   },
 });
 

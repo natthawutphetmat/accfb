@@ -34,7 +34,7 @@ export default function Page() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/login", requestOptions);
+      const response = await fetch("https://longin.myads.dev/login", requestOptions);
       const result = await response.json(); // Assuming the server returns a JSON object with a token or status
 
       if (response.ok) {
@@ -91,8 +91,8 @@ export default function Page() {
       </form>
 
       <div className="text-center mt-5">
-        <a href="/login" className="btn btn-info">
-          - เข้าสู่ระบบ -
+        <a href="/singup"  >
+        ลงทะเบียน
         </a>
       </div>
     </div>

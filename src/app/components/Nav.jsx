@@ -1,10 +1,27 @@
 "use client";
 
-import React from 'react'
 import { useSession, signOut } from 'next-auth/react';
-
+import React, { useEffect, useState } from "react";
 
 export default function Nav() {
+
+
+
+ const [user, setUser] = useState(null);
+ 
+
+  useEffect(() => {
+    
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+  
+       
+    } else {
+       const username = localStorage.getItem("username");
+      setUser(username);
+    }
+  }, []);
 
   const { data: session, status } = useSession();
 
@@ -28,26 +45,21 @@ export default function Nav() {
 
 
    
-        <span className="navbar-text">
+        <span className="navbar-text  ">
 
-{session ? (
-  <div className='d-flex'>
+{user ? (
+ 
+ <h5 className="text-light mx-3"> {user} </h5>
 
- <div className='mx-5'>
- <div><img src="/img/user.png" width={50} alt="user" />  </div>
- <div className='text-center' >{session.user.name}</div>
- </div>
- <div className='mx-5'>
-  <button onClick={() => signOut()} className='btn btn-outline-danger'>ออก</button>
-  </div>
-  </div>  
+
+ 
 ):(
 
 
   <>
   
 
-  <a href="/singup" className='btn btn-danger'>ลงทะเบียน</a> 
+  <p href="/singup" className='btn btn-danger'>ลงทะเบียน</p> 
   
   
   </>
