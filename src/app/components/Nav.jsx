@@ -33,7 +33,7 @@ export default function Nav() {
    
         <img src="/img/logo.png" width={60} alt="logo" />
      
-        <a className='home' href="/">Home</a>
+        <a className='home' href="https://www.myads.dev/">Home</a>
     
 
     <form className="d-flex" role="search">
